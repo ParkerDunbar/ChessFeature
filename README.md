@@ -1,3 +1,7 @@
+Original Project from https://github.com/pratiknaik/Chess
+
+
+
 Chess
 =====
 
@@ -6,8 +10,3 @@ You can download and run it directly using Eclipse. Run the Game.java file to st
 Includes a special version of Chess with Archbishop and Chancellor as valid pieces. 
 
 
-
-
-Standard Chess Board Screenshot
-
-![alt tag](https://raw.github.com/pratiknaik/Chess/master/doc/Standard Chess Default Names.png)
