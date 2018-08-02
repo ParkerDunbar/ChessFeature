@@ -22,6 +22,7 @@ import chessGame.King;
 import chessGame.Piece;
 import chessGame.StandardBoard;
 import chessGame.Board;
+import chessGame.GameType;
 import chessViews.GameDisplay;
 
 /**
@@ -44,7 +45,7 @@ public class Game {
 	chessGame.Board.Color gameTurn;
 	StandardBoard gameBoard;
 	boolean gameOver;
-	static boolean gameType;
+	static GameType gameType;
 	int squareSize;
 	JFrame window;
 	JPanel gamePanel;
@@ -64,7 +65,7 @@ public class Game {
 	 * and start a new move stack.
 	 * @param gameType 
 	 */
-	public void gameInit(boolean gameType) {
+	public void gameInit(GameType gameType) {
 		gameBoard = new StandardBoard(8,8);
 		gameBoard.populateBoardWithPieces(gameType);
 		gameTurn = chessGame.Board.Color.white;
@@ -91,12 +92,18 @@ public class Game {
 	 * Helper method to get the type of game. Special includes Archbishop and Chancellors.
 	 * @return boolean true if special game
 	 */
-	private static boolean getGameType() {
-		int response = JOptionPane.showConfirmDialog(null, "Do you want to play a Special Game?", "Game Type", JOptionPane.YES_NO_OPTION);
-		if(response == JOptionPane.YES_OPTION)
-			gameType = true;
-		else
-			gameType = false;
+	private static GameType getGameType() {
+		gameType = GameType.Normal;
+		int response = JOptionPane.showConfirmDialog(null, "Do you want to play Super Mega Death Chess?", "Game Type", JOptionPane.YES_NO_OPTION);
+		if(response == JOptionPane.YES_OPTION) {
+			gameType = GameType.Special;
+			return gameType;
+		}
+		response = JOptionPane.showConfirmDialog(null, "Do you want to play Chess960?", "Game Type", JOptionPane.YES_NO_OPTION);
+		if(response == JOptionPane.YES_OPTION) {
+			gameType = GameType.Chess960;
+			return gameType;
+		}
 		return gameType;
 	}
 	
@@ -131,7 +138,7 @@ public class Game {
 	 * game's main frame.
 	 */
 	public void setupDisplay(){
-		window = new JFrame("Super Mega Death Chess");
+		window = new JFrame("Chess");
         gamePanel = initializeGamePanel(gameBoard); 
         Container contentPanel = window.getContentPane();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.LINE_AXIS));
