@@ -123,9 +123,6 @@ public class StandardBoard extends Board {
 		setupRooks(r1, r2);
 		setupQueens(queen);
 		setupKings(king);
-		
-		
-		
 	}
 
 	/**
